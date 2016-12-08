@@ -91,11 +91,16 @@ module.exports = function() {
 /////////////////////////////////////////////////////////////////////////////
 function clean(dir, age = 0) {
   fs.readdir(dir, (err, files) => {
+
+    if(err) {
+      return console.error(err)
+    }
+
     files.forEach((file) => {
       const filePath = path.join(dir, file)
       fs.stat(filePath, (err, stat) => {
         if (err) {
-          return console.error(err);
+          return console.error(err)
         }
         const now = new Date().getTime();
         const endTime = new Date(stat.ctime).getTime() + age

@@ -612,12 +612,12 @@ class OSSTreeDelegate extends BaseTreeDelegate {
           console.log(response)
 
           const id = response.bucketKey + '-' + response.objectKey
-
+          
           this.ossAPI.getObjectDetails(
             response.bucketKey,
             response.objectKey).then((objectDetails) => {
 
-              if(!$(container).find(`group[lmv-nodeid='${id}']`).length) {
+              if($(container).find(`group[lmv-nodeid='${id}']`).length === 0) {
 
                 const objectNode = new TreeNode({
                   id: response.bucketKey + '-' + response.objectKey,

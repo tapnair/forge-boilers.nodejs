@@ -302,7 +302,6 @@ export default class ItemPanel extends UIComponent {
 
     const details = await this.dmAPI.getItem(
       item.projectId,
-      item.folderId,
       item.itemId)
 
     $(`.item-json-view`).JSONView(details, {

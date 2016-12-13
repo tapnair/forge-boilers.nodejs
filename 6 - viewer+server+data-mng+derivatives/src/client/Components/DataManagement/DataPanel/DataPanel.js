@@ -533,6 +533,12 @@ export default class DataPanel extends UIComponent {
     this.emit('loadItemDetails', node).then(() => {
 
       node.showLoader(false)
+
+    }, (err) => {
+
+      node.showLoader(false)
+
+      console.log(err)
     })
   }
 

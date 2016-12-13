@@ -287,8 +287,7 @@ export default class ItemPanel extends UIComponent {
     $('#' + btnShowInTabId).click(() => {
 
       const uri = `${this.dmAPI.apiUrl}/projects/` +
-        `${this.item.projectId}/folders/` +
-        `${this.item.folderId}/items/` +
+        `${this.item.projectId}/items/` +
         `${this.item.itemId}`
 
       this.showPayload(uri)

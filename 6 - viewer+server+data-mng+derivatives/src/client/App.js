@@ -434,7 +434,7 @@ export default class App {
     $('.derivatives-panel').css('display', 'none')
     $('.item-panel').css('display', 'block')
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
 
       $('#item-title').text('Item: ')
       $('#item-name').text(node.name)
@@ -442,6 +442,10 @@ export default class App {
       this.itemPanel.load(node).then(() => {
 
         resolve()
+
+      }, (err) => {
+
+        reject(err)
       })
     })
   }

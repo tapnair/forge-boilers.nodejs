@@ -12,21 +12,6 @@ module.exports = function() {
 
   var router = express.Router()
 
-  const dir = path.resolve(__dirname,
-    `../../../../TMP`)
-
-  clean(dir)
-
-  ///////////////////////////////////////////////////////////////////
-  // start cleanup task to remove uploaded temp files
-  //
-  ///////////////////////////////////////////////////////////////////
-  setInterval(() => {
-
-    clean(dir, 60 * 60 * 1000)
-
-  }, 60 * 60 * 1000)
-
   //////////////////////////////////////////////////////////////////////////////
   // Initialization upload
   //
@@ -43,6 +28,23 @@ module.exports = function() {
   })
 
   var upload = multer({ storage: storage })
+
+  ///////////////////////////////////////////////////////////////////
+  // start cleanup task to remove uploaded temp files
+  //
+  ///////////////////////////////////////////////////////////////////
+  const dir = path.resolve(__dirname,
+    `../../../../TMP`)
+
+  setInterval(() => {
+
+    clean(dir, 60 * 60 * 1000)
+
+  }, 60 * 60 * 1000)
+
+  setTimeout(() => {
+    clean(dir)
+  }, 30 * 1000)
 
   /////////////////////////////////////////////////////////////////////////////
   // POST /upload/oss/:bucketKey
@@ -90,6 +92,7 @@ module.exports = function() {
 //
 /////////////////////////////////////////////////////////////////////////////
 function clean(dir, age = 0) {
+
   fs.readdir(dir, (err, files) => {
 
     if(err) {

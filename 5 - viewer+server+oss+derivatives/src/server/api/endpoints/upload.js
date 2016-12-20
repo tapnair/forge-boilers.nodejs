@@ -72,8 +72,8 @@ module.exports = function() {
         file)
 
       res.json(response)
-    }
-    catch (ex) {
+
+    } catch (ex) {
 
       console.log(ex)
 

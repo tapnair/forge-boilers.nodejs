@@ -119,8 +119,9 @@ export default class OssSvc extends BaseSvc {
     bucketCreationData.policyKey = validatePolicyKey(
       bucketCreationData.policyKey)
 
-    const options = Object.assign({}, {
-      xAdsRegion: 'US'}, opts)
+    const options = {
+      xAdsRegion: opts.xAdsRegion || 'US'
+    }
 
     this._APIAuth.accessToken = token
 
